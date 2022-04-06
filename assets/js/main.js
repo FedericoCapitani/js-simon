@@ -21,8 +21,35 @@ function scrivereNumeri(selector, array_length, tag_name, numeri_generati) {
         numeri_da_copiare.append(numero)
     }
 }
-// countdown
-
+// nascondere i numeri generati
+function nascondere(){
+    document.getElementById('numbers').innerHTML = ''
+}
+// 
+function inserire_numeri(){
+    inserire_numeri_in_html(numeri.length, numeri)
+}
+// far inserire i numeri all'utente e controlalre se sono corretti
+function inserire_numeri_in_html(counter, array){
+    let numeri_utente = [];
+    let numero_utente  = 0;
+    const numeri_da_scrivere = document.querySelector('#numeri_indovinati')
+    numeri_da_scrivere.innerHTML  =''
+    for(let i = 0; i < counter; i++){
+        numero_utente = parseInt(prompt(`Inserisci il ${i+1}° numero`))
+        numeri_utente[i] = numero_utente
+        console.log(`numeri utente ${numeri_utente}`);
+        const numero_da_scrivere = document.createElement('div')
+        // scrivere i numeri trovati e non
+        if(array[i] == numeri_utente[i]){
+            numero_da_scrivere.append(`Hai trovato il ${i+1}° numero: ${array[i]}`)
+            numeri_da_scrivere.append(numero_da_scrivere)
+        }else{
+            numero_da_scrivere.append(`Non hai trovato il numero`)
+            numeri_da_scrivere.append(numero_da_scrivere)
+        }
+    }
+}
 // assegnare numeri generati ad un array per visualizzarli a schermo
 let numeri = []
 numeri = GenRndNumbers(5);
@@ -39,3 +66,6 @@ var countdown = setInterval(function(){
     }
     tempo_rimasto -= 1;
 }, 1000)
+// nascondere numeri
+const nascondere_numneri = setTimeout(nascondere, 31000);
+const risultato_domande = setTimeout(inserire_numeri, 32000)
