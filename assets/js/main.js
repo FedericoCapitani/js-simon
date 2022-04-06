@@ -21,10 +21,21 @@ function scrivereNumeri(selector, array_length, tag_name, numeri_generati) {
         numeri_da_copiare.append(numero)
     }
 }
+// countdown
 
 // assegnare numeri generati ad un array per visualizzarli a schermo
 let numeri = []
 numeri = GenRndNumbers(5);
 console.log(numeri);
-const outputHtml = scrivereNumeri('#numbers', numeri.length, 'div', numeri);
-
+const scrittura_numeri = scrivereNumeri('#numbers', numeri.length, 'div', numeri);
+// countdown dei secondi che l'utente ha per leggere i numeri 
+var tempo_rimasto = 30;
+var countdown = setInterval(function(){
+    if(tempo_rimasto <= 0){
+        clearInterval(countdown);
+        document.querySelector('#timer').innerHTML = 'Tempo scaduto';
+    } else {
+        document.querySelector('#timer').innerHTML =  `Rimangono ${tempo_rimasto} secondi`;
+    }
+    tempo_rimasto -= 1;
+}, 1000)
